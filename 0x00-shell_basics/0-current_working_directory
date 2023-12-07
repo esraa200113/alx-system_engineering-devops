@@ -1,2 +1,2 @@
 #!/bin/bash
-to print te path of the current directory type "pwd"
+pwd
