@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# This script displays a list of currently running processes.
+
+# Display the column headers
+printf "%-10s %-5s %-5s %-7s %-7s %-5s %-5s %-10s %s\n" "USER" "PID" "%CPU" "%MEM" "VSZ" "RSS" "TTY" "STAT" "COMMAND"
+
+# Iterate through all processes and format the output
+ps axo user,pid,%cpu,%mem,vsz,rss,tty,stat,comm,args --sort=pid | sed 1d | while read -r line; do
+    printf "%-10s %5s %5s %7s %7s %5s %5s %10s %s\n" $line
+done
+
