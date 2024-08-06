@@ -28,4 +28,4 @@ if curl -s 0:80 | grep -q "Welcome to nginx!"; then
 else
     echo "Nginx is not running on port 80"
 fi
-:
+
