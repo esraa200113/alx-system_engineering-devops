@@ -1,4 +1,6 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
+# This script installs and configures Nginx to listen on port 80 on all IPv4 addresses
 
 # Update package list and install nginx
 apt-get update
@@ -26,4 +28,4 @@ if curl -s 0:80 | grep -q "Welcome to nginx!"; then
 else
     echo "Nginx is not running on port 80"
 fi
-
+:
