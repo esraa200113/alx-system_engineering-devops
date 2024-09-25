@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """
-Module to query the Reddit API and print the top 10 hot posts of a subreddit.
+Module to query the Reddit API and print the top 10 hot posts for a given subreddit.
+If the subreddit is invalid, it prints None.
 """
 
 import requests
@@ -22,7 +23,7 @@ def top_ten(subreddit):
         if response.status_code == 200:
             data = response.json()
             posts = data.get('data', {}).get('children', [])
-            if len(posts) == 0:
+            if not posts:
                 print(None)
             else:
                 for post in posts:
