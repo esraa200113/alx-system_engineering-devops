@@ -17,10 +17,23 @@ file { '/var/www/html':
   recurse => true,
 }
 
-# Ensure Apache is pointing to the correct DocumentRoot for the WordPress site
+# Ensure Apache is pointing to the correct DocumentRoot
 file { '/etc/apache2/sites-available/000-default.conf':
   ensure  => file,
-  content => template('apache/default.conf.erb'),
+  content => '
+<VirtualHost *:80>
+    ServerAdmin webmaster@localhost
+    DocumentRoot /var/www/html
+
+    <Directory /var/www/html>
+        Options Indexes FollowSymLinks
+        AllowOverride All
+        Require all granted
+    </Directory>
+
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>',
   notify  => Service['apache2'],  # Reload Apache if config changes
 }
 
